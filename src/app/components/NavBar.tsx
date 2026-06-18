@@ -62,7 +62,7 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
             onClick={() => goHome("mgames")}
             className="flex items-center gap-2 md:gap-3"
           >
-            <img src={logoImg} alt="MGAMES" className="h-8 md:h-10 w-auto" />
+            <img src={logoImg} alt="MGAMES" className="h-22 md:h- w-auto" />
             <span
               className="text-white tracking-[0.15em]"
               style={{
@@ -71,7 +71,7 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
                 fontSize: "clamp(20px, 4vw, 26px)",
               }}
             >
-              MGAMES
+              
             </span>
           </button>
 
