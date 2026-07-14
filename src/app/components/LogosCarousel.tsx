@@ -1,23 +1,33 @@
 import { motion } from "motion/react";
 import { CATEGORIES, CategoryKey } from "./categories";
+import pg from "../../assets/logos/pg.png";
+import mercadolibre from "../../assets/logos/mercadolibre.png";
+import bago from "../../assets/logos/bago.png";
+import ypf from "../../assets/logos/ypf.png";
+import michelin from "../../assets/logos/michelin.png";
+import irsa from "../../assets/logos/irsa.png";
+import siemens from "../../assets/logos/siemens.png";
+import uala from "../../assets/logos/uala.png";
+import messe from "../../assets/logos/messe.png";
+import puma from "../../assets/logos/puma.png";
+import dell from "../../assets/logos/dell.png";
+import camuzzi from "../../assets/logos/camuzzi.png";
 
 type Props = { active: CategoryKey };
 
-const LOGOS = [
-  "P&G",
-  "Mercado Libre",
-  "Bagó",
-  "YPF",
-  "Michelin",
-  "Tecpetrol",
-  "IRSA",
-  "Siemens",
-  "Ualá",
-  "Messe Frankfurt",
-  "Puma",
-  "Dell",
-  "Blackout",
-  "Camuzzi",
+const LOGOS: { name: string; src: string }[] = [
+  { name: "P&G", src: pg },
+  { name: "Mercado Libre", src: mercadolibre },
+  { name: "YPF", src: ypf },
+  { name: "Michelin", src: michelin },
+  { name: "Siemens", src: siemens },
+  { name: "Bagó", src: bago },
+  { name: "Puma", src: puma },
+  { name: "Dell", src: dell },
+  { name: "Ualá", src: uala },
+  { name: "IRSA", src: irsa },
+  { name: "Camuzzi", src: camuzzi },
+  { name: "Messe Frankfurt", src: messe },
 ];
 
 export function LogosCarousel({ active }: Props) {
@@ -97,11 +107,21 @@ export function LogosCarousel({ active }: Props) {
           animate={{ x: ["0%", "-33.333%"] }}
           transition={{ duration: 50, ease: "linear", repeat: Infinity }}
         >
-          {repeated.map((name, i) => (
+          {repeated.map((logo, i) => (
             <div
-              key={`${name}-${i}`}
-              className="shrink-0 flex items-center gap-3 group cursor-default"
+              key={`${logo.name}-${i}`}
+              className="shrink-0 flex items-center gap-10 md:gap-16 group cursor-default"
             >
+              <img
+                src={logo.src}
+                alt={logo.name}
+                className="w-auto shrink-0 select-none"
+                style={{
+                  height: "clamp(26px, 4vw, 40px)",
+                  opacity: 0.9,
+                }}
+                draggable={false}
+              />
               <span
                 style={{
                   width: 10,
@@ -112,18 +132,6 @@ export function LogosCarousel({ active }: Props) {
                   opacity: 0.6,
                 }}
               />
-              <span
-                className="uppercase transition-colors"
-                style={{
-                  color: "#FFFFFF",
-                  fontFamily: "'Oswald', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "clamp(24px, 4.5vw, 36px)",
-                  letterSpacing: "0.08em",
-                }}
-              >
-                {name}
-              </span>
             </div>
           ))}
         </motion.div>
