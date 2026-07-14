@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavBar, PageKey } from "./components/NavBar";
 import { Hero } from "./components/Hero";
+import { VideoHero } from "./components/VideoHero";
 import { Marquee } from "./components/Marquee";
 import { Stats } from "./components/Stats";
 import { Process } from "./components/Process";
@@ -20,9 +21,10 @@ export default function App() {
   const [page, setPage] = useState<PageKey>("home");
   const c = CATEGORIES[active];
 
+  // Al cambiar de página o de sección (menú), volver al tope de la página.
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [page]);
+  }, [page, active]);
 
   const goContact = () => {
     setPage("home");
@@ -45,6 +47,7 @@ export default function App() {
 
       {page === "home" && (
         <>
+          {c.video && <VideoHero videoId={c.video} accent={c.accent} />}
           <Hero active={active} onSelect={setActive} />
           <Marquee items={c.marquee} accent={c.accent} />
           <Stats active={active} />

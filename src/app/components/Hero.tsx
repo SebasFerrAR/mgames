@@ -162,6 +162,11 @@ export function Hero({ active, onSelect }: Props) {
               </p>
 
               <button
+                onClick={() =>
+                  document
+                    .getElementById("contacto")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="group uppercase inline-flex items-center gap-3 transition-transform hover:scale-[1.03]"
                 style={{
                   backgroundColor: c.accent,

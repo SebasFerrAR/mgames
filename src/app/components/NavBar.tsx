@@ -18,9 +18,20 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
   const [hoverExp, setHoverExp] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hoverPreview, setHoverPreview] = useState<CategoryKey | null>(null);
+  // Logo grande al entrar, se achica al scrollear (efecto tipo Cognitia, minuta 10/06/26)
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const expCats: CategoryKey[] = CATEGORY_ORDER.filter((k) => k !== "mgames");
   const preview = hoverPreview ? CATEGORIES[hoverPreview] : CATEGORIES[expCats[0]];
+  // El botón de reserva copia el color de la sección activa (minuta 10/06/26).
+  const accent = CATEGORIES[active].accent;
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -56,23 +67,25 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
         }}
       >
         <div
-          className="max-w-[1440px] mx-auto h-[64px] md:h-[80px] flex items-center justify-between px-4 md:px-8 relative z-10"
+          className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8 relative z-10"
+          style={{
+            height: scrolled ? 68 : 112,
+            transition: "height 0.35s cubic-bezier(0.22,1,0.36,1)",
+          }}
         >
           <button
             onClick={() => goHome("mgames")}
             className="flex items-center gap-2 md:gap-3"
           >
-            <img src={logoImg} alt="MGAMES" className="h-22 md:h- w-auto" />
-            <span
-              className="text-white tracking-[0.15em]"
+            <img
+              src={logoImg}
+              alt="MGAMES"
+              className="w-auto"
               style={{
-                fontFamily: "'Oswald', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(20px, 4vw, 26px)",
+                height: scrolled ? 44 : 84,
+                transition: "height 0.35s cubic-bezier(0.22,1,0.36,1)",
               }}
-            >
-              
-            </span>
+            />
           </button>
 
           {/* DESKTOP */}
@@ -170,9 +183,10 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
                 document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
               }, 50);
             }}
-            className="hidden md:inline-flex uppercase text-white px-5 md:px-6 py-3 hover:opacity-90 transition-opacity"
+            className="hidden md:inline-flex uppercase px-5 md:px-6 py-3 hover:opacity-90 transition-colors"
             style={{
-              backgroundColor: "#E51A2E",
+              backgroundColor: accent,
+              color: "#0D1B2A",
               fontFamily: "'Oswald', sans-serif",
               fontWeight: 700,
               fontSize: 13,
@@ -350,7 +364,7 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             className="lg:hidden fixed inset-0 z-40 overflow-y-auto"
-            style={{ backgroundColor: "#0D1B2A", paddingTop: 64 }}
+            style={{ backgroundColor: "#0D1B2A", paddingTop: scrolled ? 68 : 112 }}
           >
             <div className="px-5 py-6">
               <div
@@ -485,9 +499,10 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
                       ?.scrollIntoView({ behavior: "smooth" });
                   }, 100);
                 }}
-                className="w-full uppercase text-white mt-10 py-4 hover:opacity-90 transition-opacity"
+                className="w-full uppercase mt-10 py-4 hover:opacity-90 transition-colors"
                 style={{
-                  backgroundColor: "#E51A2E",
+                  backgroundColor: accent,
+                  color: "#0D1B2A",
                   fontFamily: "'Oswald', sans-serif",
                   fontWeight: 700,
                   fontSize: 15,

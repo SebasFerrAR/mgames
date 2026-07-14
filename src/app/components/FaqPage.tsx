@@ -14,7 +14,7 @@ const SECTIONS: { title: string; faqs: { q: string; a: string }[] }[] = [
     faqs: [
       {
         q: "¿Qué es MGAMES?",
-        a: "Un estudio de diseño de experiencias lúdicas. Producimos eventos para empresas, bodas, despedidas, cumpleaños y kids.",
+        a: "Una productora de experiencias. Producimos eventos para empresas, bodas, despedidas, cumpleaños y Neon Night.",
       },
       {
         q: "¿Dónde operan?",

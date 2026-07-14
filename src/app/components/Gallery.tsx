@@ -20,7 +20,7 @@ export function Gallery({ active }: Props) {
               lineHeight: 0.95,
             }}
           >
-            Crónica / <span style={{ color: c.accent }}>{c.label}</span>
+            Postales / <span style={{ color: c.accent }}>{c.label}</span>
           </h2>
           <a
             href="#"

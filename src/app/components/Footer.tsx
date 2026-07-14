@@ -76,7 +76,7 @@ export function Footer({ active }: Props) {
               Experiencias
             </div>
             <div className="grid grid-cols-2 gap-y-2 gap-x-6">
-              {["Empresas", "Bodas", "Despedidas", "Cumpleaños", "Kids", "Neon Night"].map((l) => (
+              {["Empresas", "Bodas", "Despedidas", "Cumpleaños", "Neon Night"].map((l) => (
                 <a
                   key={l}
                   href="#"
@@ -117,7 +117,7 @@ export function Footer({ active }: Props) {
                   fontSize: 16,
                 }}
               >
-                hola@mgames.com.ar
+                info@mgames.com.ar
               </span>
               <span
                 className="text-white"
@@ -127,7 +127,7 @@ export function Footer({ active }: Props) {
                   fontSize: 16,
                 }}
               >
-                +54 9 11 0000-0000
+                +54 9 11 4849-5688
               </span>
             </div>
             <div className="flex gap-3">

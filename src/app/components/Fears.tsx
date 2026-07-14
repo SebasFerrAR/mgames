@@ -47,7 +47,6 @@ export function Fears({ active }: Props) {
             }}
           >
             Diseñamos contexto, ritmo y progresión para que nadie quede afuera.
-            Bancamos cada decisión con experiencia real.
           </p>
         </div>
 

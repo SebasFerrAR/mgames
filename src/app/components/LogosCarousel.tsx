@@ -4,21 +4,20 @@ import { CATEGORIES, CategoryKey } from "./categories";
 type Props = { active: CategoryKey };
 
 const LOGOS = [
-  "Globant",
+  "P&G",
   "Mercado Libre",
-  "Despegar",
-  "Rappi",
-  "Galicia",
+  "Bagó",
   "YPF",
-  "Quilmes",
-  "Naranja X",
-  "Banco Macro",
-  "Personal",
-  "Coca-Cola",
-  "Movistar",
-  "Toyota",
-  "L'Oréal",
-  "Adidas",
+  "Michelin",
+  "Tecpetrol",
+  "IRSA",
+  "Siemens",
+  "Ualá",
+  "Messe Frankfurt",
+  "Puma",
+  "Dell",
+  "Blackout",
+  "Camuzzi",
 ];
 
 export function LogosCarousel({ active }: Props) {
@@ -52,7 +51,7 @@ export function LogosCarousel({ active }: Props) {
                 lineHeight: 0.95,
               }}
             >
-              + de 120 marcas <span style={{ color: c.accent }}>confían</span>.
+              + de 100 marcas <span style={{ color: c.accent }}>confían</span>.
             </h2>
           </div>
           <div
@@ -65,7 +64,7 @@ export function LogosCarousel({ active }: Props) {
               lineHeight: 1.4,
             }}
           >
-            Compañías que vinieron a romper la rutina y se quedaron con la energía.
+            Generamos espacios que despiertan nuevas formas de conexión.
           </div>
         </div>
       </div>

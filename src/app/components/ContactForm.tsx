@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { CATEGORIES, CategoryKey, CATEGORY_ORDER } from "./categories";
 import { Reviews } from "./Reviews";
@@ -7,9 +6,6 @@ type Props = { active: CategoryKey };
 
 export function ContactForm({ active }: Props) {
   const c = CATEGORIES[active];
-  const [step, setStep] = useState(1);
-  const [withAlcohol, setWithAlcohol] = useState(false);
-  const [setting, setSetting] = useState("indistinto");
 
   const labelStyle: React.CSSProperties = {
     color: c.accent,
@@ -63,24 +59,12 @@ export function ContactForm({ active }: Props) {
           >
             Contanos lo que tenés en <span style={{ color: c.accent }}>mente.</span>
           </h2>
-          <p
-            className="max-w-md mb-8"
-            style={{
-              color: "#CCCCCC",
-              fontFamily: "'Barlow Condensed', sans-serif",
-              fontWeight: 500,
-              fontSize: 19,
-              lineHeight: 1.4,
-            }}
-          >
-            Te respondemos en menos de 24hs con una propuesta a medida.
-          </p>
-          <div className="grid grid-cols-2 gap-px" style={{ backgroundColor: "#3A3A3A" }}>
+          <div className="grid grid-cols-2 gap-px mt-2" style={{ backgroundColor: "#3A3A3A" }}>
             {[
-              ["WhatsApp", "+54 9 11 0000-0000"],
-              ["Email", "hola@mgames.com.ar"],
-              ["IG", "@mgames"],
-              ["Ubicación", "BA / LATAM"],
+              ["WhatsApp", "+54 9 11 4849-5688"],
+              ["Email", "info@mgames.com.ar"],
+              ["IG", "@mgames_Experience"],
+              ["Ubicación", "Buenos Aires, Argentina"],
             ].map(([k, v]) => (
               <div
                 key={k}
@@ -119,30 +103,6 @@ export function ContactForm({ active }: Props) {
         </div>
 
         <div className="lg:col-span-7">
-          <div className="flex items-center gap-3 mb-8">
-            {[1, 2].map((s) => (
-              <div
-                key={s}
-                className="flex-1 h-1"
-                style={{
-                  backgroundColor: step >= s ? c.accent : "#3A3A3A",
-                }}
-              />
-            ))}
-            <div
-              className="uppercase ml-3"
-              style={{
-                color: "#CCCCCC",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "0.18em",
-              }}
-            >
-              {step} / 2
-            </div>
-          </div>
-
           <div
             className="p-5 md:p-10"
             style={{
@@ -150,167 +110,73 @@ export function ContactForm({ active }: Props) {
               border: `1px solid ${c.accent}40`,
             }}
           >
-            {step === 1 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="md:col-span-2">
-                  <label style={labelStyle}>Tipo de evento</label>
-                  <select style={inputStyle} defaultValue={c.key}>
-                    {CATEGORY_ORDER.filter((k) => k !== "mgames").map((k) => (
-                      <option key={k} value={k}>
-                        {CATEGORIES[k].label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label style={labelStyle}>Cantidad de personas</label>
-                  <input type="number" placeholder="Ej: 50" style={inputStyle} />
-                </div>
-                <div>
-                  <label style={labelStyle}>Ubicación</label>
-                  <input type="text" placeholder="Ciudad o salón" style={inputStyle} />
-                </div>
-                <div>
-                  <label style={labelStyle}>Fecha tentativa</label>
-                  <input type="date" style={inputStyle} />
-                </div>
-                <div>
-                  <label style={labelStyle}>Tu nombre</label>
-                  <input type="text" placeholder="Nombre" style={inputStyle} />
-                </div>
-                <div className="md:col-span-2">
-                  <label style={labelStyle}>Email o WhatsApp</label>
-                  <input type="text" placeholder="vos@mail.com / +54 9…" style={inputStyle} />
-                </div>
-
-                <button
-                  onClick={() => setStep(2)}
-                  className="md:col-span-2 group uppercase inline-flex items-center justify-center gap-3 hover:opacity-90 transition-opacity"
-                  style={{
-                    backgroundColor: c.accent,
-                    color: "#0D1B2A",
-                    fontFamily: "'Oswald', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 16,
-                    letterSpacing: "0.12em",
-                    padding: "18px 36px",
-                    borderRadius: 0,
-                    width: "100%",
-                  }}
-                >
-                  Siguiente
-                  <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
+            {/* Formulario simplificado — 5 campos esenciales + origen (minuta 10/06/26) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="md:col-span-2">
+                <label style={labelStyle}>Tipo de evento</label>
+                <select style={inputStyle} defaultValue={c.key === "mgames" ? "" : c.key}>
+                  <option value="" disabled>
+                    Seleccionar…
+                  </option>
+                  {CATEGORY_ORDER.filter((k) => k !== "mgames").map((k) => (
+                    <option key={k} value={k}>
+                      {CATEGORIES[k].label}
+                    </option>
+                  ))}
+                </select>
               </div>
-            )}
-
-            {step === 2 && (
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label style={labelStyle}>¿Juegos con alcohol?</label>
-                  <div className="flex gap-2">
-                    {[
-                      { v: true, l: "Sí" },
-                      { v: false, l: "No" },
-                    ].map((o) => (
-                      <button
-                        key={o.l}
-                        onClick={() => setWithAlcohol(o.v)}
-                        className="uppercase px-6 py-3"
-                        style={{
-                          backgroundColor: withAlcohol === o.v ? c.accent : "transparent",
-                          color: withAlcohol === o.v ? "#0D1B2A" : "#FFFFFF",
-                          border: `1px solid ${c.accent}`,
-                          fontFamily: "'Oswald', sans-serif",
-                          fontWeight: 700,
-                          fontSize: 13,
-                          letterSpacing: "0.14em",
-                          borderRadius: 0,
-                        }}
-                      >
-                        {o.l}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>Edad promedio</label>
-                  <select style={inputStyle} defaultValue="">
-                    <option value="" disabled>Seleccionar…</option>
-                    <option>-18</option>
-                    <option>18 - 35</option>
-                    <option>35 - 50</option>
-                    <option>50+</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label style={labelStyle}>¿Aire libre o indoor?</label>
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      { v: "aire", l: "Aire libre" },
-                      { v: "indoor", l: "Indoor" },
-                      { v: "indistinto", l: "Indistinto" },
-                    ].map((o) => (
-                      <button
-                        key={o.v}
-                        onClick={() => setSetting(o.v)}
-                        className="uppercase px-6 py-3"
-                        style={{
-                          backgroundColor: setting === o.v ? c.accent : "transparent",
-                          color: setting === o.v ? "#0D1B2A" : "#FFFFFF",
-                          border: `1px solid ${c.accent}`,
-                          fontFamily: "'Oswald', sans-serif",
-                          fontWeight: 700,
-                          fontSize: 13,
-                          letterSpacing: "0.14em",
-                          borderRadius: 0,
-                        }}
-                      >
-                        {o.l}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setStep(1)}
-                    className="uppercase"
-                    style={{
-                      backgroundColor: "transparent",
-                      color: c.accent,
-                      border: `2px solid ${c.accent}`,
-                      fontFamily: "'Oswald', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 14,
-                      letterSpacing: "0.12em",
-                      padding: "16px 28px",
-                      borderRadius: 0,
-                    }}
-                  >
-                    Atrás
-                  </button>
-                  <button
-                    className="group uppercase inline-flex items-center justify-center gap-3 flex-1 hover:opacity-90 transition-opacity"
-                    style={{
-                      backgroundColor: c.accent,
-                      color: "#0D1B2A",
-                      fontFamily: "'Oswald', sans-serif",
-                      fontWeight: 700,
-                      fontSize: 16,
-                      letterSpacing: "0.12em",
-                      padding: "18px 36px",
-                      borderRadius: 0,
-                    }}
-                  >
-                    Recibir la propuesta
-                    <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                  </button>
-                </div>
+              <div>
+                <label style={labelStyle}>Tu nombre</label>
+                <input type="text" placeholder="Nombre" style={inputStyle} />
               </div>
-            )}
+              <div>
+                <label style={labelStyle}>Celular</label>
+                <input type="tel" placeholder="+54 9 11…" style={inputStyle} />
+              </div>
+              <div className="md:col-span-2">
+                <label style={labelStyle}>Correo electrónico</label>
+                <input type="email" placeholder="vos@mail.com" style={inputStyle} />
+              </div>
+              <div className="md:col-span-2">
+                <label style={labelStyle}>Mensaje</label>
+                <textarea
+                  rows={4}
+                  placeholder="Contanos del evento: cantidad de participantes, fecha, ubicación…"
+                  style={{ ...inputStyle, resize: "vertical" }}
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label style={labelStyle}>¿Cómo nos encontraste?</label>
+                <select style={inputStyle} defaultValue="">
+                  <option value="" disabled>
+                    Seleccionar…
+                  </option>
+                  <option>Instagram</option>
+                  <option>Google</option>
+                  <option>Recomendación</option>
+                  <option>Evento al que asistí</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <button
+                className="md:col-span-2 group uppercase inline-flex items-center justify-center gap-3 hover:opacity-90 transition-opacity"
+                style={{
+                  backgroundColor: c.accent,
+                  color: "#0D1B2A",
+                  fontFamily: "'Oswald', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 16,
+                  letterSpacing: "0.12em",
+                  padding: "18px 36px",
+                  borderRadius: 0,
+                  width: "100%",
+                }}
+              >
+                Recibir la propuesta
+                <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
