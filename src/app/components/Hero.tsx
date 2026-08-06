@@ -41,23 +41,6 @@ export function Hero({ active, onSelect }: Props) {
         </motion.div>
       </AnimatePresence>
 
-      {/* diagonal accent */}
-      <motion.div
-        key={c.key + "-stripe"}
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute origin-left"
-        style={{
-          width: "140%",
-          height: 4,
-          background: c.accent,
-          top: "62%",
-          left: "-20%",
-          transform: "rotate(-8deg)",
-        }}
-      />
-
       {/* TABS — top */}
       <div className="relative z-20 max-w-[1440px] mx-auto px-5 md:px-8 pt-6 md:pt-10">
         <div className="flex gap-2 overflow-x-auto pb-2 md:flex-wrap md:overflow-visible md:pb-0" style={{ scrollbarWidth: "none" }}>
@@ -101,14 +84,6 @@ export function Hero({ active, onSelect }: Props) {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <span
-                  style={{
-                    width: 40,
-                    height: 2,
-                    background: c.accent,
-                    display: "inline-block",
-                  }}
-                />
                 <div
                   className="uppercase"
                   style={{
@@ -128,8 +103,8 @@ export function Hero({ active, onSelect }: Props) {
                 style={{
                   fontFamily: "'Oswald', sans-serif",
                   fontWeight: 700,
-                  fontSize: "clamp(40px, 9vw, 110px)",
-                  lineHeight: 0.92,
+                  fontSize: "clamp(36px, 7.5vw, 88px)",
+                  lineHeight: 0.94,
                   letterSpacing: "0.005em",
                 }}
               >
@@ -141,6 +116,7 @@ export function Hero({ active, onSelect }: Props) {
                     transition={{ delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       color: i === 1 ? c.accent : "#FFFFFF",
+                      whiteSpace: "nowrap",
                     }}
                   >
                     {line}
@@ -154,8 +130,9 @@ export function Hero({ active, onSelect }: Props) {
                   color: "#CCCCCC",
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontWeight: 500,
-                  fontSize: "clamp(17px, 2.5vw, 22px)",
-                  lineHeight: 1.3,
+                  fontSize: "clamp(19px, 2.7vw, 24px)",
+                  lineHeight: 1.35,
+                  whiteSpace: "pre-line",
                 }}
               >
                 {c.sub}
@@ -258,7 +235,7 @@ export function Hero({ active, onSelect }: Props) {
                       letterSpacing: "0.1em",
                     }}
                   >
-                    Energía / {c.label}
+                    {active === "mgames" ? "MGAMES" : `${c.label} / MGAMES`}
                   </span>
                 </div>
               </motion.div>

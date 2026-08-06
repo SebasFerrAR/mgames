@@ -11,7 +11,7 @@ export function ContactForm({ active }: Props) {
     color: c.accent,
     fontFamily: "'Barlow Condensed', sans-serif",
     fontWeight: 700,
-    fontSize: 12,
+    fontSize: 14,
     letterSpacing: "0.2em",
     textTransform: "uppercase",
     display: "block",
@@ -27,7 +27,7 @@ export function ContactForm({ active }: Props) {
     borderRadius: 0,
     fontFamily: "'Barlow Condensed', sans-serif",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 18,
     outline: "none",
   };
 
@@ -61,40 +61,54 @@ export function ContactForm({ active }: Props) {
           </h2>
           <div className="grid grid-cols-2 gap-px mt-2" style={{ backgroundColor: "#3A3A3A" }}>
             {[
-              ["WhatsApp", "+54 9 11 4849-5688"],
-              ["Email", "info@mgames.com.ar"],
-              ["IG", "@mgames_Experience"],
-              ["Ubicación", "Buenos Aires, Argentina"],
-            ].map(([k, v]) => (
-              <div
-                key={k}
-                className="p-4"
-                style={{ backgroundColor: "#0D1B2A" }}
-              >
-                <div
-                  className="uppercase mb-1"
-                  style={{
-                    color: c.accent,
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 11,
-                    letterSpacing: "0.2em",
-                  }}
+              { k: "WhatsApp", v: "+54 9 11 4849-5688", href: "https://wa.me/5491148495688" },
+              { k: "Email", v: "info@mgames.com.ar", href: "mailto:info@mgames.com.ar" },
+              { k: "IG", v: "@mgames_experience", href: "https://instagram.com/mgames_experience" },
+              { k: "Ubicación", v: "Buenos Aires, Argentina", href: null },
+            ].map(({ k, v, href }) => {
+              const inner = (
+                <>
+                  <div
+                    className="uppercase mb-1"
+                    style={{
+                      color: c.accent,
+                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 11,
+                      letterSpacing: "0.2em",
+                    }}
+                  >
+                    {k}
+                  </div>
+                  <div
+                    className="text-white"
+                    style={{
+                      fontFamily: "'Barlow Condensed', sans-serif",
+                      fontWeight: 600,
+                      fontSize: 15,
+                    }}
+                  >
+                    {v}
+                  </div>
+                </>
+              );
+              return href ? (
+                <a
+                  key={k}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="p-4 block transition-colors hover:bg-white/[0.03]"
+                  style={{ backgroundColor: "#0D1B2A" }}
                 >
-                  {k}
+                  {inner}
+                </a>
+              ) : (
+                <div key={k} className="p-4" style={{ backgroundColor: "#0D1B2A" }}>
+                  {inner}
                 </div>
-                <div
-                  className="text-white"
-                  style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontWeight: 600,
-                    fontSize: 15,
-                  }}
-                >
-                  {v}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="mt-6">
@@ -102,7 +116,7 @@ export function ContactForm({ active }: Props) {
           </div>
         </div>
 
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7" id="reservar" style={{ scrollMarginTop: 80 }}>
           <div
             className="p-5 md:p-10"
             style={{
@@ -114,7 +128,8 @@ export function ContactForm({ active }: Props) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="md:col-span-2">
                 <label style={labelStyle}>Tipo de evento</label>
-                <select style={inputStyle} defaultValue={c.key === "mgames" ? "" : c.key}>
+                {/* key={active}: re-selecciona el tipo según la sección activa */}
+                <select key={active} style={inputStyle} defaultValue={c.key === "mgames" ? "" : c.key}>
                   <option value="" disabled>
                     Seleccionar…
                   </option>
@@ -141,7 +156,7 @@ export function ContactForm({ active }: Props) {
                 <label style={labelStyle}>Mensaje</label>
                 <textarea
                   rows={4}
-                  placeholder="Contanos del evento: cantidad de participantes, fecha, ubicación…"
+                  placeholder="Contanos del evento: cantidad de participantes, fecha, ubicación y lo que consideres relevante."
                   style={{ ...inputStyle, resize: "vertical" }}
                 />
               </div>
@@ -152,9 +167,11 @@ export function ContactForm({ active }: Props) {
                     Seleccionar…
                   </option>
                   <option>Instagram</option>
+                  <option>TikTok</option>
                   <option>Google</option>
                   <option>Recomendación</option>
                   <option>Evento al que asistí</option>
+                  <option>IA</option>
                   <option>Otro</option>
                 </select>
               </div>

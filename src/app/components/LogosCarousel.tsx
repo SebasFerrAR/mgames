@@ -15,15 +15,16 @@ import camuzzi from "../../assets/logos/camuzzi.png";
 
 type Props = { active: CategoryKey };
 
+// Marcas principales primero (YPF, Mercado Libre) — minuta 14/07/26.
 const LOGOS: { name: string; src: string }[] = [
-  { name: "P&G", src: pg },
-  { name: "Mercado Libre", src: mercadolibre },
   { name: "YPF", src: ypf },
-  { name: "Michelin", src: michelin },
-  { name: "Siemens", src: siemens },
-  { name: "Bagó", src: bago },
-  { name: "Puma", src: puma },
+  { name: "Mercado Libre", src: mercadolibre },
+  { name: "P&G", src: pg },
   { name: "Dell", src: dell },
+  { name: "Siemens", src: siemens },
+  { name: "Michelin", src: michelin },
+  { name: "Puma", src: puma },
+  { name: "Bagó", src: bago },
   { name: "Ualá", src: uala },
   { name: "IRSA", src: irsa },
   { name: "Camuzzi", src: camuzzi },
@@ -70,7 +71,7 @@ export function LogosCarousel({ active }: Props) {
               color: "#CCCCCC",
               fontFamily: "'Barlow Condensed', sans-serif",
               fontWeight: 500,
-              fontSize: 18,
+              fontSize: 20,
               lineHeight: 1.4,
             }}
           >

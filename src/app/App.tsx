@@ -15,6 +15,7 @@ import { AboutPage } from "./components/AboutPage";
 import { FaqPage } from "./components/FaqPage";
 import { CATEGORIES, CategoryKey } from "./components/categories";
 import { PreviewBar } from "./components/PreviewBar";
+import { WhatsAppFloat } from "./components/WhatsAppFloat";
 
 export default function App() {
   const [active, setActive] = useState<CategoryKey>("mgames");
@@ -53,10 +54,10 @@ export default function App() {
           <Stats active={active} />
           <Process active={active} />
           <Gallery active={active} />
-          <Marquee items={c.marquee} accent={c.accent} reverse duration={40} />
-          <Fears active={active} />
+          <Marquee items={c.marquee2 ?? c.marquee} accent={c.accent} reverse duration={40} />
           <Manifesto active={active} />
           <ContactForm active={active} />
+          <Fears active={active} />
         </>
       )}
 
@@ -65,6 +66,7 @@ export default function App() {
 
       <LogosCarousel active={active} />
       <Footer active={active} />
+      <WhatsAppFloat />
       <PreviewBar />
     </div>
   );

@@ -1,10 +1,6 @@
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { CATEGORIES, CategoryKey } from "./categories";
-import team1 from 'figma:asset/IMG_1627.JPG';
-import team2 from 'figma:asset/IMG_2606.JPG';
-import team3 from 'figma:asset/IMG_2607.JPG';
-import team4 from 'figma:asset/IMG_4064.JPG';
 
 type Props = {
   active: CategoryKey;
@@ -14,47 +10,35 @@ type Props = {
 const VALUES = [
   {
     n: "01",
-    title: "Diseñamos energía",
-    body: "Cada minuto está pensado. No improvisamos: producimos.",
+    title: "La energía se contagia",
+    body: "Entramos a transformar el evento, a liberar su potencial y a convertirlo en una experiencia épica.",
   },
   {
     n: "02",
-    title: "Nadie afuera",
-    body: "Diseñamos progresión para que el tímido y el extrovertido encajen.",
+    title: "Son todos protagonistas",
+    body: "Nadie mira de afuera. Cada persona es una pieza clave: proponemos dinámicas que generan inclusión y participación.",
   },
   {
     n: "03",
-    title: "Sin clichés",
-    body: "Ni animador chillón, ni vergüenza ajena, ni karaoke obligado.",
+    title: "Diseño de autor",
+    body: "Diseñamos, probamos y perfeccionamos nuestros juegos para que vivas una experiencia única.",
   },
   {
     n: "04",
-    title: "Memoria",
-    body: "Si lo van a contar por años, lo hicimos bien.",
+    title: "Detalles que lo cambian todo",
+    body: "Sutilezas que sorprenden y te conectan con el presente. No solo el Diablo está en los detalles: nosotros también.",
   },
 ];
 
 const TEAM = [
-  {
-    name: "Martín García",
-    role: "Founder & Director",
-    img: team1,
-  },
-  {
-    name: "Lucía Fernández",
-    role: "Producción Creativa",
-    img: team2,
-  },
-  {
-    name: "Tomás Méndez",
-    role: "Diseño de Experiencia",
-    img: team3,
-  },
-  {
-    name: "Sofía Pérez",
-    role: "Coordinación de Eventos",
-    img: team4,
-  },
+  { name: "Martín Perazzo", role: "La Mente Maestra · Director Creativo" },
+  { name: "Carla Boratti", role: "Cerebro de operaciones" },
+  { name: "Agustín Pastor", role: "Legendary Game Master" },
+  { name: "Alejo Pereyra", role: "Game Master" },
+  { name: "Magdalena Vega", role: "Game Master" },
+  { name: "Ignacio Escalante", role: "Game Master" },
+  { name: "Lucía Álvarez", role: "Game Master" },
+  { name: "Paula Morykon", role: "Game Master" },
 ];
 
 export function AboutPage({ active, onContact }: Props) {
@@ -121,7 +105,7 @@ export function AboutPage({ active, onContact }: Props) {
                 letterSpacing: "0.005em",
               }}
             >
-              Somos los que <span style={{ color: c.accent }}>mueven</span> la energía de un grupo.
+              Somos los que <span style={{ color: c.accent }}>mueven</span> la energía del grupo.
             </motion.h1>
             <p
               className="mt-6 max-w-xl"
@@ -129,12 +113,12 @@ export function AboutPage({ active, onContact }: Props) {
                 color: "#CCCCCC",
                 fontFamily: "'Barlow Condensed', sans-serif",
                 fontWeight: 500,
-                fontSize: "clamp(17px, 2.2vw, 22px)",
-                lineHeight: 1.35,
+                fontSize: "clamp(18px, 2.3vw, 23px)",
+                lineHeight: 1.4,
               }}
             >
-              No somos animadores. No somos un wedding planner. Somos un estudio
-              de diseño de experiencias lúdicas con +500 eventos en la espalda.
+              Entusiastas motivados del poder del encuentro. Nos encanta crear,
+              compartir, jugar y hacer de un momento algo especial.
             </p>
           </div>
 
@@ -176,7 +160,7 @@ export function AboutPage({ active, onContact }: Props) {
                 letterSpacing: "0.22em",
               }}
             >
-              La historia
+              Nuestra historia
             </div>
           </div>
           <div className="col-span-12 md:col-span-8 space-y-6">
@@ -190,35 +174,30 @@ export function AboutPage({ active, onContact }: Props) {
                 letterSpacing: "0.005em",
               }}
             >
-              Empezamos en 2017 con una idea simple: los eventos no deberían tener gente mirando el celular.
+              Hacemos lo que más nos gusta hacer. Acompañamos a cientos de personas
+              y empresas a celebrar con su gente en distintos contextos, pero con el
+              mismo objetivo: conectar.
             </p>
-            <p
-              style={{
-                color: "#CCCCCC",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 500,
-                fontSize: "clamp(16px, 2vw, 19px)",
-                lineHeight: 1.5,
-              }}
-            >
-              Después de armar más de 500 experiencias entre empresas, bodas,
-              despedidas y cumpleaños, entendimos algo: lo importante no es el
-              juego. Es la progresión. Es el ritmo. Es que el grupo se
-              transforme sin que nadie se dé cuenta.
-            </p>
-            <p
-              style={{
-                color: "#CCCCCC",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontWeight: 500,
-                fontSize: "clamp(16px, 2vw, 19px)",
-                lineHeight: 1.5,
-              }}
-            >
-              Por eso hoy MGAMES no organiza eventos. Diseña experiencias. Las
-              produce, las ejecuta, y mide lo que pasa en la energía de quienes
-              participan.
-            </p>
+            {[
+              "Todo empezó con mi Viejo y su pasión por hacer de cada encuentro algo especial. Pensarlo, trabajarlo, darle forma, crear, exponer, compartir, dar lugar y sorprender. Y viste cómo es, el fruto no cae muy lejos del árbol. No pasó mucho tiempo hasta picarme el bicho.",
+              "Entendí que lo que realmente importa es estar juntos y conectar. Ahí es dónde vibramos, sentimos, nos nutrimos. Y la sumatoria de todos esos momentos es la vida.",
+              "Así nació MGames, en mi cumpleaños número 21, con ganas de hacer algo diferente: un encuentro con espíritu rebelde y la devoción de sorprenderte a vos como invitado. Y lo que empezó como un juego, ahora se convirtió en una productora que cambia la forma de encontrarnos.",
+              "Hoy, se me infla el pecho de orgullo al ver el camino recorrido. ¿Qué venimos a hacer? A proponerte que jugar es la forma más seria de disfrutar la vida.",
+              "¿Y a dónde vamos? A conquistar el mundo. De a un montón de sonrisas a la vez. Quiero que seamos una plaga, una peste que contagie alegría. ¿Qué decís? ¿Te sumás?",
+            ].map((para, i) => (
+              <p
+                key={i}
+                style={{
+                  color: "#CCCCCC",
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontWeight: 500,
+                  fontSize: "clamp(16px, 2vw, 19px)",
+                  lineHeight: 1.55,
+                }}
+              >
+                {para}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -248,7 +227,7 @@ export function AboutPage({ active, onContact }: Props) {
               lineHeight: 0.95,
             }}
           >
-            Lo que <span style={{ color: c.accent }}>no negociamos</span>.
+            Lo que <span style={{ color: c.accent }}>no negociamos</span>
           </h2>
 
           <div
@@ -341,55 +320,43 @@ export function AboutPage({ active, onContact }: Props) {
               lineHeight: 0.95,
             }}
           >
-            Las personas <span style={{ color: c.accent }}>detrás</span>.
+            Las personas <span style={{ color: c.accent }}>detrás</span>
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2"
+            style={{ borderTop: `1px solid ${c.accent}40` }}
+          >
             {TEAM.map((p, i) => (
               <motion.div
                 key={p.name}
                 initial={{ y: 20, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.5 }}
-                className="group"
+                transition={{ delay: i * 0.04, duration: 0.45 }}
+                className="flex items-baseline justify-between gap-4 py-5 md:py-6 px-1"
+                style={{ borderBottom: `1px solid ${c.accent}40` }}
               >
-                <div
-                  className="relative overflow-hidden mb-3 md:mb-4"
-                  style={{ aspectRatio: "3/4" }}
-                >
-                  <ImageWithFallback
-                    src={p.img}
-                    alt={p.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  />
-                  <div
-                    className="absolute inset-0 transition-opacity duration-500 opacity-100 group-hover:opacity-0"
-                    style={{
-                      background: `linear-gradient(180deg, transparent 50%, ${c.accent}40)`,
-                    }}
-                  />
-                </div>
                 <div
                   className="uppercase text-white"
                   style={{
                     fontFamily: "'Oswald', sans-serif",
                     fontWeight: 700,
-                    fontSize: "clamp(16px, 2.2vw, 22px)",
-                    letterSpacing: "0.04em",
-                    lineHeight: 1.1,
+                    fontSize: "clamp(20px, 2.6vw, 30px)",
+                    letterSpacing: "0.03em",
+                    lineHeight: 1.05,
                   }}
                 >
                   {p.name}
                 </div>
                 <div
-                  className="uppercase"
+                  className="uppercase text-right shrink-0"
                   style={{
                     color: c.accent,
                     fontFamily: "'Barlow Condensed', sans-serif",
                     fontWeight: 600,
-                    fontSize: 12,
-                    letterSpacing: "0.16em",
+                    fontSize: 13,
+                    letterSpacing: "0.14em",
                   }}
                 >
                   {p.role}

@@ -55,9 +55,10 @@ export function Manifesto({ active }: Props) {
               style={{
                 fontFamily: "'Oswald', sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(40px, 9vw, 140px)",
-                lineHeight: 0.9,
+                fontSize: "clamp(34px, 7vw, 104px)",
+                lineHeight: 0.92,
                 letterSpacing: "-0.005em",
+                overflowWrap: "break-word",
               }}
             >
               {m.line1}
@@ -68,9 +69,10 @@ export function Manifesto({ active }: Props) {
                 color: c.accent,
                 fontFamily: "'Oswald', sans-serif",
                 fontWeight: 700,
-                fontSize: "clamp(40px, 9vw, 140px)",
-                lineHeight: 0.9,
+                fontSize: "clamp(34px, 7vw, 104px)",
+                lineHeight: 0.92,
                 letterSpacing: "-0.005em",
+                overflowWrap: "break-word",
               }}
             >
               {m.line2}
@@ -117,7 +119,7 @@ export function Manifesto({ active }: Props) {
                     letterSpacing: "0.22em",
                   }}
                 >
-                  — Manifiesto / {c.label}
+                  — Manifiesto / MGAMES
                 </div>
               </div>
             </div>

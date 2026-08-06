@@ -32,7 +32,7 @@ export function Process({ active }: Props) {
                 lineHeight: 0.95,
               }}
             >
-              Cómo Funciona.
+              Cómo Funciona
             </h2>
           </div>
           <div
@@ -72,7 +72,11 @@ export function Process({ active }: Props) {
                   minHeight: 260,
                 }}
               >
-                <div
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.7, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute -top-2 right-3 pointer-events-none select-none"
                   style={{
                     color: `${c.accent}30`,
@@ -83,8 +87,9 @@ export function Process({ active }: Props) {
                   }}
                 >
                   {s.n}
-                </div>
-                <div className="relative z-10 flex flex-col h-full justify-end">
+                </motion.div>
+                {/* Títulos alineados arriba (misma altura en todas las tarjetas) */}
+                <div className="relative z-10 flex flex-col h-full justify-start">
                   <div
                     style={{
                       width: 28,
@@ -110,8 +115,8 @@ export function Process({ active }: Props) {
                       color: "#CCCCCC",
                       fontFamily: "'Barlow Condensed', sans-serif",
                       fontWeight: 500,
-                      fontSize: 17,
-                      lineHeight: 1.4,
+                      fontSize: 19,
+                      lineHeight: 1.45,
                     }}
                   >
                     {s.body}

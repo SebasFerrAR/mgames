@@ -1,8 +1,24 @@
-import { Instagram, MessageCircle } from "lucide-react";
+import { Instagram, Linkedin, Youtube } from "lucide-react";
 import logoImg from "../../imports/mgames_logo.png";
 import { CATEGORIES, CategoryKey } from "./categories";
 
 type Props = { active: CategoryKey };
+
+// TikTok no viene en lucide: SVG propio
+function TikTokIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16.5 3c.3 2.1 1.5 3.6 3.5 3.9v2.4c-1.2.1-2.4-.2-3.5-.8v5.9c0 3.3-2.4 5.6-5.4 5.6-2.9 0-5.1-2.1-5.1-5 0-2.9 2.3-5 5.2-5 .3 0 .6 0 .9.1v2.6c-.3-.1-.6-.2-.9-.2-1.4 0-2.5 1-2.5 2.4 0 1.4 1.1 2.4 2.4 2.4 1.4 0 2.6-1.1 2.6-2.9V3h2.3z" />
+    </svg>
+  );
+}
+
+const SOCIALS = [
+  { label: "Instagram", href: "https://instagram.com/mgames_experience", Icon: Instagram },
+  { label: "LinkedIn", href: "#", Icon: Linkedin },
+  { label: "TikTok", href: "#", Icon: TikTokIcon },
+  { label: "YouTube", href: "#", Icon: Youtube },
+];
 
 export function Footer({ active }: Props) {
   const c = CATEGORIES[active];
@@ -36,18 +52,7 @@ export function Footer({ active }: Props) {
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-12 md:mb-16">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <img src={logoImg} alt="MGAMES" className="h-10 w-auto" />
-              <span
-                className="text-white"
-                style={{
-                  fontFamily: "'Oswald', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 24,
-                  letterSpacing: "0.12em",
-                }}
-              >
-                MGAMES
-              </span>
+              <img src={logoImg} alt="MGAMES" className="h-20 w-auto" />
             </div>
             <p
               style={{
@@ -75,7 +80,7 @@ export function Footer({ active }: Props) {
             >
               Experiencias
             </div>
-            <div className="grid grid-cols-2 gap-y-2 gap-x-6">
+            <div className="grid grid-cols-2 gap-y-1 gap-x-5">
               {["Empresas", "Bodas", "Despedidas", "Cumpleaños", "Neon Night"].map((l) => (
                 <a
                   key={l}
@@ -131,32 +136,24 @@ export function Footer({ active }: Props) {
               </span>
             </div>
             <div className="flex gap-3">
-              <a
-                href="#"
-                className="flex items-center justify-center hover:scale-110 transition-transform"
-                style={{
-                  width: 44,
-                  height: 44,
-                  border: `1px solid ${c.accent}`,
-                  color: c.accent,
-                }}
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                className="flex items-center justify-center hover:scale-110 transition-transform"
-                style={{
-                  width: 44,
-                  height: 44,
-                  border: `1px solid ${c.accent}`,
-                  color: c.accent,
-                }}
-                aria-label="WhatsApp"
-              >
-                <MessageCircle size={20} />
-              </a>
+              {SOCIALS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center hover:scale-110 transition-transform"
+                  style={{
+                    width: 44,
+                    height: 44,
+                    border: `1px solid ${c.accent}`,
+                    color: c.accent,
+                  }}
+                  aria-label={label}
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
         </div>

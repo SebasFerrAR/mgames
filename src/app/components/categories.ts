@@ -43,6 +43,16 @@ export type CategoryKey =
   | "kids"
   | "neon";
 
+// Caso de éxito (solo Empresas). Se muestra en un popup, sin salir de la página.
+export type Caso = {
+  cliente: string;   // marca / cliente
+  titulo: string;    // título del caso
+  desafio: string;   // el desafío
+  solucion: string;  // cómo lo resolvimos
+  datos?: { label: string; value: string }[]; // personas, días, ubicación…
+  image?: string;    // foto del caso
+};
+
 export type Category = {
   key: CategoryKey;
   label: string;
@@ -55,10 +65,12 @@ export type Category = {
   video?: string; // ID de YouTube para el video hero superior (opcional)
   images: string[];
   marquee: string[];
+  marquee2?: string[]; // segundo scroll (opcional); si falta, se reusa `marquee`
   stats: { num: string; label: string }[];
   process: { n: string; title: string; body: string }[];
   fears: { q: string; a: string }[];
   manifesto: { line1: string; line2: string; quote: string; quote2: string };
+  casos?: Caso[]; // casos de éxito (popup) — solo Empresas
 };
 
 const RED = "#E51A2E";
@@ -70,7 +82,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     tag: "MGAMES Experience",
     word: "MGAMES",
     h1: ["Revolucionamos", "la manera de", "conectarnos"],
-    sub: "Somos una Productora de Experiencias. Diseñamos encuentros que cambian la energía de un grupo.",
+    sub: "Somos una Productora de Experiencias.\nDiseñamos encuentros que cambian la energía de un grupo.",
     cta: "Contanos tu evento",
     accent: RED,
     video: "k5jQlsqqemU",
@@ -84,6 +96,13 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
       "Baby Shower",
       "Empresariales",
       "Stand de juegos",
+      "Barmitzvah",
+    ],
+    marquee2: [
+      "Energía diseñada",
+      "Nada librado al azar",
+      "Más que un evento",
+      "Un encuentro que transforma",
     ],
     stats: [
       { num: "+600", label: "Eventos realizados" },
@@ -115,12 +134,28 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     label: "Empresas",
     tag: "Team Building",
     word: "Empresas",
-    h1: ["Un antes", "y un después en la", "energía de tu equipo"],
+    h1: ["Un antes", "y un después", "en la energía", "de tu equipo"],
     sub: "Una experiencia de integración que conecta, fortalece y motiva.",
     cta: "Quiero mi team building",
     accent: "#FFB400",
     images: [emp1, emp2, emp3, emp4],
     marquee: [
+      "P&G",
+      "Mercado Libre",
+      "Bagó",
+      "YPF",
+      "Michelin",
+      "Tecpetrol",
+      "IRSA",
+      "Siemens",
+      "Ualá",
+      "Messe Frankfurt",
+      "Puma",
+      "Dell",
+      "Blackout",
+      "Camuzzi",
+    ],
+    marquee2: [
       "Team Building",
       "Kickoff",
       "Family Day",
@@ -133,7 +168,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     ],
     stats: [
       { num: "+100", label: "Empresas confían" },
-      { num: "10 – ∞", label: "Personas por evento" },
+      { num: "10 – 500", label: "Personas por evento" },
       { num: "2hs", label: "Duración promedio" },
       { num: "100%", label: "Indoor + Outdoor" },
     ],
@@ -144,7 +179,7 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
       { n: "04", title: "Disfrutamos", body: "Vos conectás con tu equipo. Nosotros nos ocupamos del resto." },
     ],
     fears: [
-      { q: "¿Aplica para equipos con distintos perfiles?", a: "Sí, la experiencia está diseñada para integrar personas de diferentes edades, roles y sectores." },
+      { q: "¿Se encargan de la organización completa del evento?", a: "Sí, te acompañamos desde la idea inicial y te entregamos en mano la llave." },
       { q: "¿Requiere esfuerzo físico?", a: "No, priorizamos la participación e integración por sobre el rendimiento físico." },
       { q: "¿Se necesita mucho espacio?", a: "No, nos adaptamos a cualquier espacio, ya sea interior o exterior." },
     ],
@@ -154,6 +189,49 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
       quote: "Mover la energía",
       quote2: "es mover el negocio.",
     },
+    // CONTENIDO DE EJEMPLO — Martin selecciona y envía los 3 casos definitivos.
+    casos: [
+      {
+        cliente: "Evento en Tandil",
+        titulo: "Convención internacional de 2 días",
+        desafio:
+          "Integrar en un mismo evento a 250 personas de China, Brasil, Chile y Argentina, con idiomas y culturas distintas, durante dos jornadas intensas.",
+        solucion:
+          "Diseñamos dinámicas sin barrera de idioma, con progresión de desafíos por equipos mixtos. La energía se sostuvo los dos días y el grupo terminó funcionando como uno solo.",
+        datos: [
+          { label: "Personas", value: "250" },
+          { label: "Duración", value: "2 días" },
+          { label: "Lugar", value: "Tandil" },
+        ],
+        image: emp1,
+      },
+      {
+        cliente: "Caso de éxito 2",
+        titulo: "Título del caso — a completar",
+        desafio:
+          "Descripción del desafío del evento: contexto, cantidad de personas, objetivo del cliente.",
+        solucion:
+          "Cómo lo resolvimos: la propuesta que armamos y el resultado que dejó en el equipo.",
+        datos: [
+          { label: "Personas", value: "—" },
+          { label: "Lugar", value: "—" },
+        ],
+        image: emp2,
+      },
+      {
+        cliente: "Caso de éxito 3",
+        titulo: "Título del caso — a completar",
+        desafio:
+          "Descripción del desafío del evento: contexto, cantidad de personas, objetivo del cliente.",
+        solucion:
+          "Cómo lo resolvimos: la propuesta que armamos y el resultado que dejó en el equipo.",
+        datos: [
+          { label: "Personas", value: "—" },
+          { label: "Lugar", value: "—" },
+        ],
+        image: emp3,
+      },
+    ],
   },
 
   bodas: {
@@ -161,40 +239,38 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     label: "Bodas",
     tag: "Como anillo al dedo",
     word: "Bodas",
-    h1: ["Donde se", "rompe el hielo", "y se enciende la chispa."],
+    h1: ["Donde se", "rompe el hielo", "y se enciende", "la chispa"],
     sub: "Prendemos la fiesta con juegos, desafíos y sorpresas.",
     cta: "Quiero mi boda inolvidable",
     accent: "#B8A27A",
     images: [bod1, bod2, bod3, bod4],
     marquee: [
-      "Sorpresas",
-      "Desafíos",
-      "Merch",
-      "Ruleta de Desafíos",
       "Shots",
+      "Ruleta de Desafíos",
+      "Merch",
       "Stand de Juegos",
       "Team Bride vs Team Groom",
     ],
     stats: [
-      { num: "+80", label: "Bodas al año" },
-      { num: "20min", label: "Y la pista explota" },
+      { num: "+5000", label: "Shots repartidos" },
+      { num: "+1000", label: "Desafíos concretados" },
       { num: "0", label: "Tíos sentados" },
       { num: "1", label: "Recuerdo inolvidable" },
     ],
     process: [
-      { n: "01", title: "Escuchamos", body: "Queremos saberlo todo. Nos sumergimos en su historia para entender qué quieren generar." },
+      { n: "01", title: "Escuchamos", body: "Nos sumergimos en su historia para entender qué quieren generar." },
       { n: "02", title: "Diseñamos", body: "Creamos la propuesta que te sienta como anillo al dedo." },
-      { n: "03", title: "Hacemos", body: "La chispa que enciende el fuego. Mientras antes despeguemos, más alto volamos." },
-      { n: "04", title: "Disfrutamos", body: "Más llenos que comer en la casa de la abuela." },
+      { n: "03", title: "Hacemos", body: "Damos vida a cada detalle para que todo suceda." },
+      { n: "04", title: "Disfrutamos", body: "Ustedes viven el gran día. Nosotros nos ocupamos del resto." },
     ],
     fears: [
+      { q: "¿En qué momento se hace?", a: "En la recepción, como tanda de baile, en la preboda o postboda. Danos pista y despegamos." },
       { q: "¿Y si la boda es elegante?", a: "Nada más lindo para James Bond que una fiesta fina y elegante." },
-      { q: "¿Hacen bodas destino?", a: "Sí. Creemos en las relaciones a larga distancia." },
-      { q: "¿En qué momento se hace?", a: "En la recepción, como tanda, en la preboda o postboda. Danos pista y despegamos." },
+      { q: "¿Hacen bodas destino?", a: "Obvio, creemos en las relaciones a larga distancia." },
     ],
     manifesto: {
-      line1: "Construimos recuerdos",
-      line2: "que duran para siempre.",
+      line1: "Detalles que",
+      line2: "lo cambian todo.",
       quote: "Ustedes son la fiesta,",
       quote2: "nosotros le damos brillo.",
     },
@@ -205,17 +281,17 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     label: "Despedidas",
     tag: "Que se pique",
     word: "Despedidas",
-    h1: ["Una boda única", "empieza con", "una despedida épica."],
+    h1: ["Una boda única", "empieza con", "una despedida", "épica"],
     sub: "Hay momentos en la vida para romper todo. Éste es uno de esos.",
     cta: "Quiero que se pique",
-    accent: "#B14BFF",
+    accent: "#3AD06A",
     images: [des1, des2, des3, des4],
-    marquee: ["Sin clichés", "Sin sashes ridículos", "Solo energía", "Que se pique"],
+    marquee: ["Amor", "Amigos", "Locura", "Rock & Roll"],
     stats: [
-      { num: "0", label: "Disfraces vergonzosos" },
-      { num: "+200", label: "Despedidas top" },
-      { num: "12", label: "Dinámicas exclusivas" },
-      { num: "∞", label: "Anécdotas garantidas" },
+      { num: "+500", label: "Equipos levantaron la copa" },
+      { num: "100%", label: "Enfocado en agitarla" },
+      { num: "2hs", label: "Que pasan volando" },
+      { num: "1", label: "Despedida épica" },
     ],
     process: [
       { n: "01", title: "Calentando motores", body: "Formación de equipos & lookeo." },
@@ -224,9 +300,9 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
       { n: "04", title: "Cierre con impacto", body: "¿Cómo bajás algo que no para de subir?" },
     ],
     fears: [
-      { q: "¿Hacen despedidas mixtas?", a: "¡Sí! Mixtas, solo chicas, solo chicos. La despedida que quieras." },
-      { q: "¿Va con mi grupo?", a: "Diseñamos la propuesta a medida, pensada para adaptarse al espacio y características del grupo para que entre como anillo al dedo." },
-      { q: "¿Tenemos que poner algún material?", a: "Nosotros nos encargamos de todo, lo único que necesitamos es conexión eléctrica." },
+      { q: "¿Hacen juegos con alcohol?", a: "Juegos con alcohol es nuestro segundo nombre. Fundamos la asociación EMDD – Entusiastas Motivados del Descontrol Desmedido." },
+      { q: "¿Hacen despedidas mixtas?", a: "¡Sí! Mixtas, también solo mujeres y solo hombres. La despedida que quieras." },
+      { q: "¿Va con mi grupo?", a: "Sí, diseñamos la propuesta a medida. Pensada para adaptarse a tu grupo y al espacio con el que contemos." },
     ],
     manifesto: {
       line1: "No es joda.",
@@ -241,34 +317,34 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     label: "Cumpleaños",
     tag: "Cumpleaños Diferente",
     word: "Cumples",
-    h1: ["No caigas", "en la de", "siempre."],
-    sub: "Cuando tu cumple te pide un festejo de verdad, no lo pienses más. Es por acá.",
+    h1: ["No caigas", "en la de", "siempre"],
+    sub: "Cuando tu cumple te pide un festejo de verdad, no lo pienses más.\nEs por acá.",
     cta: "Quiero un cumple distinto",
     accent: "#3AD0FF",
     images: [cum1, cum2, cum3, cum4],
-    marquee: ["30s", "40s", "50s", "Cumple sorpresa", "Que no sea karaoke"],
+    marquee: ["Nadie mira de afuera", "Todas las edades", "Outdoor & Indoor"],
     stats: [
-      { num: "0", label: "Karaokes obligados" },
-      { num: "+150", label: "Cumpleaños top" },
+      { num: "+500", label: "Equipos levantaron la copa" },
+      { num: "100%", label: "Pide la revancha" },
       { num: "2hs", label: "Que pasan volando" },
       { num: "1", label: "Cumple inolvidable" },
     ],
     process: [
       { n: "01", title: "Calentando motores", body: "Formación de equipos & lookeo." },
       { n: "02", title: "Son todos protagonistas", body: "Todos participan, nadie mira de afuera." },
-      { n: "03", title: "La fórmula secreta", body: "La energía del juego. La fuerza del equipo. Donde el desafío conecta." },
+      { n: "03", title: "La fórmula secreta", body: "La energía del juego. La fuerza del equipo." },
       { n: "04", title: "Cierre con impacto", body: "¿Cómo bajás algo que no para de subir?" },
     ],
     fears: [
-      { q: "¿Va con mi grupo?", a: "Diseñamos la propuesta a medida, pensada para adaptarse al espacio y características del grupo." },
-      { q: "¿Y si el evento es al aire libre y llueve?", a: "Somos flexibles. Un par de gotas no apagan el fuego: podemos realizarlo en un espacio cerrado o reprogramarlo. Si es única fecha y no hay plan B, te devolvemos la reserva." },
-      { q: "¿Tenemos que poner algún material?", a: "Nosotros nos encargamos de todo, lo único que necesitamos es conexión eléctrica." },
+      { q: "¿Va con mi grupo?", a: "Sí, diseñamos la propuesta a medida. Pensada para adaptarse a tu grupo y al espacio con el que contemos." },
+      { q: "¿Y si el evento es al aire libre y llueve?", a: "Somos flexibles. Un par de gotas no apagan el fuego. Podemos realizarlo en un espacio cerrado o reprogramarlo." },
+      { q: "¿Soy del interior, los puedo contratar?", a: "Obveo. Creemos en las relaciones a larga distancia ❤️" },
     ],
     manifesto: {
-      line1: "Si tu cumple no se siente",
-      line2: "como la final del mundo…",
-      quote: "…entonces fue",
-      quote2: "una reunión.",
+      line1: "Si tu cumple no se siente como",
+      line2: "la final del mundo, fue una reunión.",
+      quote: "Un año más grande,",
+      quote2: "mil veces más vivos.",
     },
   },
 
@@ -313,15 +389,15 @@ export const CATEGORIES: Record<CategoryKey, Category> = {
     label: "Neon Night",
     tag: "Neon Experience",
     word: "Neon",
-    h1: ["Cuando se", "apagan las luces,", "empieza el juego."],
-    sub: "Una experiencia inmersiva bajo luz negra, glow y adrenalina pura.",
+    h1: ["Cuando se apagan", "las luces,", "empieza el juego"],
+    sub: "Una experiencia inmersiva bajo luz ultravioleta.",
     cta: "Quiero la Neon Night",
     accent: "#B14BFF",
     images: [neo1, neo2, neo3, neo4],
-    marquee: ["UV", "Glow", "Adrenalina", "Cero realidad", "Solo neón"],
+    marquee: ["Nadie mira de afuera", "Todas las edades", "Indoor", "Otra realidad"],
     stats: [
       { num: "UV", label: "Luz negra inmersiva" },
-      { num: "+50", label: "Eventos Neon" },
+      { num: "2hs", label: "Que pasan volando" },
       { num: "100%", label: "Otro mundo" },
       { num: "1", label: "Concepto único" },
     ],

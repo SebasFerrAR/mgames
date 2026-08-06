@@ -22,7 +22,14 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
+    // Histéresis para evitar que el logo "tiemble" cerca del umbral al scrollear
+    const onScroll = () =>
+      setScrolled((prev) => {
+        const y = window.scrollY;
+        if (!prev && y > 80) return true;
+        if (prev && y < 30) return false;
+        return prev;
+      });
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -173,14 +180,14 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
             </a>
           </div>
 
-          {/* DESKTOP CTA */}
+          {/* DESKTOP CTA — lleva al formulario */}
           <a
-            href="#contacto"
+            href="#reservar"
             onClick={(e) => {
               e.preventDefault();
               onNavigate("home");
               setTimeout(() => {
-                document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth" });
+                document.getElementById("reservar")?.scrollIntoView({ behavior: "smooth" });
               }, 50);
             }}
             className="hidden md:inline-flex uppercase px-5 md:px-6 py-3 hover:opacity-90 transition-colors"
@@ -495,9 +502,9 @@ export function NavBar({ active, page, onSelectCategory, onNavigate }: Props) {
                   setMobileOpen(false);
                   setTimeout(() => {
                     document
-                      .getElementById("contacto")
+                      .getElementById("reservar")
                       ?.scrollIntoView({ behavior: "smooth" });
-                  }, 100);
+                  }, 120);
                 }}
                 className="w-full uppercase mt-10 py-4 hover:opacity-90 transition-colors"
                 style={{

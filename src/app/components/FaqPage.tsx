@@ -14,82 +14,84 @@ const SECTIONS: { title: string; faqs: { q: string; a: string }[] }[] = [
     faqs: [
       {
         q: "¿Qué es MGAMES?",
-        a: "Una productora de experiencias. Producimos eventos para empresas, bodas, despedidas, cumpleaños y Neon Night.",
+        a: "Una productora de experiencias. Producimos eventos para empresas, bodas, despedidas y cumpleaños.",
       },
       {
-        q: "¿Dónde operan?",
-        a: "Buenos Aires base, pero viajamos a todo el país y al resto de LATAM con producción propia.",
+        q: "¿Qué tipo de eventos hacen?",
+        a: "Hacemos todo tipo de eventos: cumpleaños, casamientos, despedidas, empresariales, team building, family day, lanzamientos y baby shower.",
+      },
+      {
+        q: "¿Hacen eventos fuera de Buenos Aires?",
+        a: "Sí, donde sea. Creemos en las relaciones a larga distancia.",
       },
       {
         q: "¿Con cuánta anticipación se reserva?",
-        a: "Recomendamos 30 días. Para fechas de alta demanda (diciembre, verano), 60 días.",
+        a: "Mientras antes, mejor. Si sabés que querés algo diferente, es mejor que empecemos a crearlo.",
+      },
+      {
+        q: "¿Cuánto dura la experiencia de juegos?",
+        a: "En promedio 2 horas. La diseñamos de acuerdo a sus expectativas.",
       },
       {
         q: "¿Tienen cupo mínimo / máximo?",
-        a: "Desde 8 personas hasta 800. Adaptamos formato según la cantidad.",
-      },
-    ],
-  },
-  {
-    title: "Producción",
-    faqs: [
-      {
-        q: "¿Llevan todo o tenemos que poner algo?",
-        a: "Llevamos todo: dinámicas, props, ambientación, equipo. Vos solo ponés el lugar y los invitados.",
+        a: "A partir de 10 personas. ¡Mientras más, mejor!",
       },
       {
-        q: "¿Funciona indoor y al aire libre?",
-        a: "Sí. Cada formato tiene su versión indoor y outdoor. Si el clima cambia, adaptamos en el momento.",
+        q: "¿Puedo sumarlos a un evento que ya estoy organizando?",
+        a: "Sí, estamos listos para ponerle el broche de oro.",
       },
       {
-        q: "¿Cuánto dura una experiencia?",
-        a: "Entre 1 y 2 horas, según el tipo. Diseñamos la energía para que pase volando.",
+        q: "¿Va con mi grupo?",
+        a: "Sí, la experiencia está diseñada para integrar personas de diferentes edades.",
+      },
+      {
+        q: "¿Hacen juegos con alcohol?",
+        a: "Juegos con alcohol es nuestro segundo nombre. Fundamos la asociación EMDD – Entusiastas Motivados del Descontrol Desmedido.",
+      },
+      {
+        q: "¿Se encargan de la organización completa del evento?",
+        a: "Sí, te acompañamos desde la idea inicial y te entregamos en mano la llave.",
+      },
+      {
+        q: "¿Incluyen todos los materiales?",
+        a: "Sí. Incluimos todo, no tenés que preocuparte por nada.",
       },
       {
         q: "¿Puedo personalizar la dinámica?",
-        a: "Sí. Hacemos brief previo y adaptamos a cultura, edad, dress code y objetivos.",
+        a: "Obvio, creamos a partir de tu idea un encuentro inolvidable.",
+      },
+      {
+        q: "¿Realizan en espacios cerrados y abiertos?",
+        a: "Sí, diseñamos la propuesta a medida. Pensada para espacios abiertos y cerrados.",
       },
     ],
   },
   {
-    title: "Precio y reserva",
+    title: "Valor y reserva",
     faqs: [
       {
         q: "¿Cómo se cotiza?",
-        a: "Por cantidad de personas, tipo de evento y duración. Te enviamos propuesta en menos de 24hs.",
+        a: "Por tipo de evento, cantidad de participantes, ubicación y fecha. Contactanos y te diseñamos nuestra propuesta.",
       },
       {
         q: "¿Qué incluye el precio?",
-        a: "Producción, coordinación, todo el equipo en campo, materiales y seguro de responsabilidad civil.",
+        a: "Todo. Producción, coordinación, traslados, materiales, equipos de sonido y micrófonos, y póliza de seguro de accidentes personales.",
       },
       {
         q: "¿Cómo se reserva?",
-        a: "Con seña del 30%. El saldo, una semana antes del evento.",
+        a: "Con una seña del 50%. El saldo restante, una semana antes del evento.",
       },
       {
-        q: "¿Se puede cancelar?",
-        a: "Hasta 15 días antes con devolución del 70% de la seña. Reprogramación sin costo si avisás con anticipación.",
-      },
-    ],
-  },
-  {
-    title: "El día del evento",
-    faqs: [
-      {
-        q: "¿A qué hora llegan?",
-        a: "2 horas antes del arranque. Listos y probados antes del primer invitado.",
+        q: "¿Y si llueve?",
+        a: "Somos flexibles. Un par de gotas no apagan el fuego. Podemos realizarlo en un espacio cerrado o reprogramarlo.",
       },
       {
-        q: "¿Necesitan algo especial del salón?",
-        a: "Un punto de luz y un espacio para preparar. El resto lo resolvemos.",
+        q: "¿Requiere esfuerzo físico?",
+        a: "No, priorizamos la participación e integración por sobre el rendimiento físico.",
       },
       {
-        q: "¿Y si llueve / falla algo?",
-        a: "Tenemos plan B para todo. Producción tiene backup de cada elemento crítico.",
-      },
-      {
-        q: "¿Se filma / fotografía?",
-        a: "Si querés, sumamos cobertura propia. O coordinamos con tu equipo.",
+        q: "¿Se necesita mucho espacio?",
+        a: "No, nos adaptamos a cualquier espacio, ya sea interior o exterior.",
       },
     ],
   },
@@ -173,7 +175,7 @@ function FaqItem({
 
 export function FaqPage({ active, onContact }: Props) {
   const c = CATEGORIES[active];
-  const [openKey, setOpenKey] = useState<string>("Producción-0");
+  const [openKey, setOpenKey] = useState<string>("General-0");
 
   return (
     <div className="w-full">
@@ -231,7 +233,8 @@ export function FaqPage({ active, onContact }: Props) {
               letterSpacing: "0.005em",
             }}
           >
-            Todo lo que <span style={{ color: c.accent }}>querés</span> saber.
+            <span className="block">Todo lo que</span>
+            <span className="block"><span style={{ color: c.accent }}>querés</span> saber</span>
           </h1>
           <p
             className="max-w-xl"
@@ -243,7 +246,7 @@ export function FaqPage({ active, onContact }: Props) {
               lineHeight: 1.35,
             }}
           >
-            Si tu duda no está acá, escribinos. Te respondemos en menos de 24hs.
+            Si tu duda no está acá, escribinos y lo charlamos.
           </p>
         </div>
       </section>
@@ -253,7 +256,7 @@ export function FaqPage({ active, onContact }: Props) {
           {SECTIONS.map((s) => (
             <div key={s.title}>
               <div
-                className="uppercase mb-6 md:mb-8 flex items-baseline gap-3"
+                className="uppercase mb-6 md:mb-8"
                 style={{
                   color: c.accent,
                   fontFamily: "'Oswald', sans-serif",
@@ -262,16 +265,6 @@ export function FaqPage({ active, onContact }: Props) {
                   letterSpacing: "0.02em",
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "'Barlow Condensed', sans-serif",
-                    fontSize: 14,
-                    letterSpacing: "0.22em",
-                    color: "#CCCCCC",
-                  }}
-                >
-                  /
-                </span>
                 {s.title}
               </div>
               <div
@@ -310,7 +303,7 @@ export function FaqPage({ active, onContact }: Props) {
               letterSpacing: "0.01em",
             }}
           >
-            ¿No encontraste lo <span style={{ color: c.accent }}>tuyo?</span>
+            ¿Te quedaste con <span style={{ color: c.accent }}>dudas?</span>
           </h2>
           <button
             onClick={onContact}

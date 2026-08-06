@@ -15,7 +15,8 @@ export function VideoHero({ videoId, accent }: Props) {
   const src =
     `https://www.youtube-nocookie.com/embed/${videoId}` +
     `?autoplay=1&mute=1&loop=1&playlist=${videoId}` +
-    `&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1`;
+    `&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1` +
+    `&vq=hd1080&hd=1`;
 
   const scrollDown = () => {
     window.scrollTo({ top: window.innerHeight * 0.9, behavior: "smooth" });
