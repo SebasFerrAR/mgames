@@ -14,10 +14,10 @@ function TikTokIcon({ size = 20 }: { size?: number }) {
 }
 
 const SOCIALS = [
-  { label: "Instagram", href: "https://instagram.com/mgames_experience", Icon: Instagram },
-  { label: "LinkedIn", href: "#", Icon: Linkedin },
-  { label: "TikTok", href: "#", Icon: TikTokIcon },
-  { label: "YouTube", href: "#", Icon: Youtube },
+  { label: "Instagram", href: "https://www.instagram.com/mgames_experience/", Icon: Instagram },
+  { label: "LinkedIn", href: "https://ar.linkedin.com/company/mgamesexperience", Icon: Linkedin },
+  { label: "TikTok", href: "https://www.tiktok.com/@mgames_experience", Icon: TikTokIcon },
+  { label: "YouTube", href: "https://www.youtube.com/@mgames2065", Icon: Youtube },
 ];
 
 export function Footer({ active }: Props) {
